@@ -12,7 +12,9 @@ watch(
   (value) => {
     if (value) {
       Notification.requestPermission().then((permission) => {
-        if (permission !== 'granted') {
+        if (permission === 'granted') {
+          settingStore.notificationEnabled = true
+        } else {
           settingStore.notificationEnabled = false
         }
       })
