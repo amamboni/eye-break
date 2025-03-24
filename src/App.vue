@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 
-async function requestNotificationPermission() {
+const requestNotificationPermission = async () => {
   if ('Notification' in window) {
     const permission = await Notification.requestPermission()
     if (permission === 'granted') {
