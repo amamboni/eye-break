@@ -14,7 +14,7 @@ export default defineConfig({
         name: 'Eye Break',
         short_name: 'EyeBreak',
         description: 'Reminder for your eyes to take a break',
-        theme_color: '#D35933',
+        theme_color: '#6E11B0',
         icons: [
           {
             src: 'logo-192x192.png',
