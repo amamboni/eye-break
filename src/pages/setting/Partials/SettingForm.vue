@@ -4,8 +4,20 @@ import SecondaryButton from '@/components/SecondaryButton.vue'
 import TextInput from '@/components/TextInput.vue'
 import { useSettingStore } from '@/store/setting'
 import { requestNotificationPermission } from '@/utils'
+import { onMounted, ref } from 'vue'
 
 const settingStore = useSettingStore()
+
+const isNotificationEnabled = ref(false)
+
+onMounted(async () => {
+  if ('Notification' in window) {
+    const permission = await Notification.requestPermission()
+    if (permission === 'granted') {
+      isNotificationEnabled.value = true
+    }
+  }
+})
 </script>
 
 <template>
@@ -34,6 +46,8 @@ const settingStore = useSettingStore()
       </template>
     </FormInput>
 
-    <SecondaryButton @click="requestNotificationPermission">Enable Notifications</SecondaryButton>
+    <SecondaryButton :disabled="isNotificationEnabled" @click="requestNotificationPermission">
+      Enable Notifications {{ isNotificationEnabled ? '(Enabled)' : '' }}
+    </SecondaryButton>
   </form>
 </template>
