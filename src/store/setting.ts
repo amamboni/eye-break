@@ -7,7 +7,6 @@ export const useSettingStore = defineStore('setting', {
     ({
       screenTime: 1200,
       breakTime: 20,
-      notificationEnabled: false,
     } as Setting),
   persist,
 })
