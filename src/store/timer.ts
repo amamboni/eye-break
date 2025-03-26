@@ -28,14 +28,13 @@ export const useTimerStore = defineStore('timer', {
     initialiseScreen() {
       this.breakTime.start = undefined
       this.breakTime.end = undefined
+      this.notificationShown = false
       this.screenTime.start = Date.now()
     },
     startScreen() {
       if (this.screenInterval) {
         clearInterval(this.screenInterval)
       }
-
-      this.notificationShown = false
 
       const settingStore = useSettingStore()
 
@@ -72,14 +71,13 @@ export const useTimerStore = defineStore('timer', {
     initialiseBreak() {
       this.screenTime.start = undefined
       this.screenTime.end = undefined
+      this.notificationShown = false
       this.breakTime.start = Date.now()
     },
     startBreak() {
       if (this.breakInterval) {
         clearInterval(this.breakInterval)
       }
-
-      this.notificationShown = false
 
       const settingStore = useSettingStore()
 
@@ -120,6 +118,7 @@ export const useTimerStore = defineStore('timer', {
       this.breakTime.end = undefined
       this.screenDone = false
       this.breakDone = false
+      this.notificationShown = false
     },
     showNotification(title: string, body: string) {
       if ('serviceWorker' in navigator) {
